@@ -128,7 +128,7 @@ function updateTotals() {
         const itemAmount = items[i].querySelector(".expense-amount")
 
         //Remove caracteres não numéricos e substitui a virgula pelo ponto
-        let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",",".")
+        let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",",".")
 
         //converte o valor para float
         value = parseFloat(value)
@@ -145,10 +145,30 @@ function updateTotals() {
 
       }
 
-      expenseTotal.textContent = total
-       
+      //Cria a span para add o R$ formatado
+      const symbolBRL = document.createElement("small")
+      symbolBRL.textContent = "R$"
+
+      //formata o valor e remove o R$ que sera exibido pelo small com um estilo customizado
+      total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+
+      //limpa o conteúdo do elemento
+      expenseTotal.innerHTML = ""
+
+      //Add o simbolo da moeda e o valor
+      expenseTotal.append(symbolBRL,total)
+
     } catch (error) {
       alert('Erro ao atualizar a lista de despesas');
       console.error(error);
     }
 }
+
+//Evento que captura o clique nos itens da lista
+expenseList.addEventListener("click", function(event) {
+  //Verificar se o elemento clicado é o X
+  if (event.target.classList.contain("remove.icon")){
+
+  }
+
+})
