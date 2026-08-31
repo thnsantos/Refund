@@ -188,7 +188,7 @@ expenseList.addEventListener("click", function(event) {
 function formClear() {
   //limpa os inputs
   expense.value = ""
-  category.valule = ""
+  category.value = ""
   amount.value = ""
 
   //coloca o foco no input de amount
